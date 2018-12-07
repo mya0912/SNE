@@ -7,7 +7,7 @@ provider "aws" {
     region = "${var.region}"
 }
 
-#this section is to networking resources - VPC, Security Groups, ELB, etc.
+#this section is to define networking resources - VPC, Security Groups, ELB, etc.
 
 /*this section is to define compute Resources
 #query ami id for ec2 instance creation*/
