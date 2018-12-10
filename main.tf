@@ -14,18 +14,18 @@ provider "aws" {
 data "aws_ami" "test_iis_server" {
 
   filter{
-    name            = "name"
-    values          = ["Windows_Server-2016-English*"]
+    name = "name"
+    values = ["Windows_Server-2016-English*"]
   }
 
-  most_recent       = true
+  most_recent = true
 }
 
 #create ec2 instance
 resource "aws_instance" "winserver" {
-    ami             = "${data.aws_ami.test_iis_server.id}"
-    instance_type   = "t3.micro"
-    key_name        = "malipui-venv-kp"
+    ami = "${data.aws_ami.test_iis_server.id}"
+    instance_type = "t3.micro"
+    key_name = "malipui-venv-kp"
 
     tags {
       Name = "Alipui-tftest"
