@@ -15,7 +15,7 @@ data "aws_ami" "test_iis_server" {
 
   filter{
     name            = "name"
-    values          = ["Windows_Server-2016-English-Nano*"]
+    values          = ["Windows_Server-2016-English*"]
   }
 
   most_recent       = true
@@ -25,8 +25,16 @@ data "aws_ami" "test_iis_server" {
 resource "aws_instance" "winserver" {
     ami             = "${data.aws_ami.test_iis_server.id}"
     instance_type   = "t3.micro"
+    key_name        = "malipui-venv-kp"
 
     tags {
-      description = "Alipui TF Test"
+      Name = "Alipui-tftest"
+      description = "test resource creation with terraform"
     }
 }
+
+#import keypair for ssh/rdp access
+resource "aws_key_pair" "deployer-kp"{
+    key_name = "malipui-venv-kp"
+    public_key = "${var.publickey}"
+  }
