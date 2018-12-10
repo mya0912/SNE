@@ -21,7 +21,7 @@ data "aws_ami" "test_iis_server" {
   most_recent = true
 }
 
-#create ec2 instance
+#create ec2 instance with descriptive tags
 resource "aws_instance" "winserver" {
     ami = "${data.aws_ami.test_iis_server.id}"
     instance_type = "t3.micro"
